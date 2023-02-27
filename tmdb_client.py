@@ -7,7 +7,7 @@ def get_popular_movies():
     headers = {
         'Authorization': f'Bearer {api_token}'
     }
-    response = requests.get(endpoint, headers=headers)
+    response = requests.get(endpoint, headers = headers)
     return response.json()
 
 def get_poster_url(poster_api_path, size='w342'):
