@@ -4,4 +4,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template("index.html")
+    movies = []
+    return render_template("homepage.html", movies=range(3))
