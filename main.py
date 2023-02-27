@@ -5,4 +5,4 @@ app = Flask(__name__)
 @app.route('/')
 def homepage():
     movies = []
-    return render_template("homepage.html", movies=range(3))
+    return render_template("homepage.html", movies=range(4))
