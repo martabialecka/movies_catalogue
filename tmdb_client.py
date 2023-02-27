@@ -1,4 +1,5 @@
 import requests
+import random
 
 def get_popular_movies():
     endpoint = "https://api.themoviedb.org/3/movie/popular"
@@ -15,4 +16,5 @@ def get_poster_url(poster_api_path, size="w342"):
 
 def get_movies(how_many):
     data = get_popular_movies()
+    random.shuffle(data["results"])
     return data["results"][:how_many]
