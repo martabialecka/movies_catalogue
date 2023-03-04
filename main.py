@@ -1,12 +1,20 @@
 import tmdb_client
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+MOVIE_LIST_TYPES = [
+    'now_playing',
+    'popular',
+    'top_rated',
+    'upcoming'
+]
+
 @app.route('/')
 def homepage():
-    movies = tmdb_client.get_movies(how_many = 8)
-    return render_template('homepage.html', movies = movies)
+    selected_list = request.args.get('list_type', 'popular')
+    movies = tmdb_client.get_movies(how_many = 8, list_type = selected_list)
+    return render_template('homepage.html', movie_list_types = MOVIE_LIST_TYPES, movies = movies, current_list = selected_list)
 
 @app.context_processor
 def utility_processor():
