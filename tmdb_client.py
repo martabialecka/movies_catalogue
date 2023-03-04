@@ -22,19 +22,17 @@ def get_movies(how_many):
     return top
 
 def get_single_movie(movie_id):
-    endpoint = f"https://api.themoviedb.org/3/movie/{movie_id}"
+    endpoint = f'https://api.themoviedb.org/3/movie/{movie_id}'
     headers = {
-        "Authorization": f"Bearer {API_TOKEN}"
+        'Authorization': f'Bearer {API_TOKEN}'
     }
     response = requests.get(endpoint, headers=headers)
     return response.json()
 
 def get_single_movie_cast(movie_id):
-    #endpoint = f" https://developers.themoviedb.org/3/movies/get-movie-credits{movie_id}"
-    endpoint = f"https://api.themoviedb.org/3/movie/{movie_id}/credits"
+    endpoint = f'https://api.themoviedb.org/3/movie/{movie_id}/credits'
     headers = {
-        "Authorization": f"Bearer {API_TOKEN}"
+        'Authorization': f'Bearer {API_TOKEN}'
     }
-    response = requests.get(endpoint, headers=headers)
-    return response.json()["cast"]
-    #czemu 'cast' w nawiasie kwadratowyn?
+    response = requests.get(endpoint, headers = headers)
+    return response.json()['cast']
