@@ -11,23 +11,14 @@ def get_popular_movies():
     response = requests.get(endpoint, headers = headers)
     return response.json()
 
-def get_movies_list(list_type):
-    endpoint = f"https://api.themoviedb.org/3/movie/{list_type}"
-    headers = {
-        "Authorization": f"Bearer {API_TOKEN}"
-    }
-    response = requests.get(endpoint, headers=headers)
-    response.raise_for_status()
-    return response.json()
-
 def get_poster_url(poster_api_path, size='w342'):
     base_url = 'https://image.tmdb.org/t/p/'
     return f'{base_url}{size}/{poster_api_path}'
 
-def get_movies(how_many, list_type='popular'):
+def get_movies(how_many):
     data = get_popular_movies()
     top = data['results'][:how_many]
-    #random.shuffle(top)
+    random.shuffle(top)
     return top
 
 def get_single_movie(movie_id):
