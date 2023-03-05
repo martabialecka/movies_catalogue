@@ -1,5 +1,6 @@
 import tmdb_client
 from flask import Flask, render_template, request
+import random
 
 app = Flask(__name__)
 
@@ -26,6 +27,8 @@ def utility_processor():
 
 @app.route('/movie/<movie_id>')
 def movie_details(movie_id):
-   details = tmdb_client.get_single_movie(movie_id)
-   cast = tmdb_client.get_single_movie_cast(movie_id)
-   return render_template('movie_details.html', movie = details, cast = cast)
+    details = tmdb_client.get_single_movie(movie_id)
+    cast = tmdb_client.get_single_movie_cast(movie_id)
+    movie_images = tmdb_client.get_movie_images(movie_id)
+    selected_backdrop = random.choice(movie_images['backdrops'])
+    return render_template('movie_details.html', movie = details, cast = cast, selected_backdrop = selected_backdrop)
