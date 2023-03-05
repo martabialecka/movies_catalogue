@@ -19,7 +19,7 @@ def get_poster_url(poster_api_path, size='w342'):
 def get_movies(how_many, list_type):
     data = get_movies_list(list_type)
     top = data['results'][:how_many]
-#    random.shuffle(top)
+    random.shuffle(top)
     return top
 
 def get_single_movie(movie_id):
