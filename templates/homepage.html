@@ -7,7 +7,7 @@
     </div>
     <div class="col-lg-12 mb-4">
     {% for type in movie_list_types %}
-        <a href="{{ url_for('homepage', list_type = type) }}" class="btn btn-outline-info">{{type|replace('_', ' ')|title()}}</a>
+        <a href="{{ url_for('homepage', list_type = type) }}" class="btn btn{{'-outline' if current_list != type else ''}}-info">{{type|replace('_', ' ')|title()}}</a>
     {% endfor %}
     </div>
     {% for movie in movies %}
