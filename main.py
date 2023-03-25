@@ -11,11 +11,13 @@ MOVIE_LIST_TYPES = [
     'upcoming'
 ]
 
+DEFAULT_LIST_TYPE_INDEX = 0
+
 @app.route('/')
 def homepage():
     selected_list = request.args.get('list_type', 'popular')
     if not selected_list in MOVIE_LIST_TYPES:
-        selected_list = MOVIE_LIST_TYPES[0]
+        selected_list = MOVIE_LIST_TYPES[DEFAULT_LIST_TYPE_INDEX]
     movies = tmdb_client.get_movies(how_many = 8, list_type = selected_list)
     return render_template('homepage.html', movie_list_types = MOVIE_LIST_TYPES, movies = movies, current_list = selected_list)
 
